@@ -8,6 +8,9 @@ import '../assets/styles/Welcome.css';
 import Quiz from '../assets/img/quiz.svg';
 
 const Welcome = () => {
+  const quizState = useContext(QuizContext);
+  console.log(quizState);
+
   return (
     <div id='welcome'>
       <h2> Seja bem-vindo </h2>
