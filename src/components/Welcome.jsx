@@ -1,4 +1,8 @@
+// react, componentes, estáticos
 import React from 'react'
+
+// estáticos
+import '../assets/styles/Welcome.css';
 import Quiz from '../assets/img/quiz.svg';
 
 const Welcome = () => {

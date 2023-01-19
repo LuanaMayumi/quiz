@@ -2,4 +2,43 @@
   padding: 0;
   margin: 0;
   font-family: Raleway, sans-serif;
+  color: white;
+}
+
+body,
+html {
+  min-height: 100vh;
+  /* minimo que o body e html pode ter. VH medida responsiva */
+  height: 100%;
+  background-color: black;
+}
+
+img {
+  max-width: 100%;
+  /* largura máxima considerando a pagina, % é responsivo tbm */
+}
+
+button {
+  font-weight: bold;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 0.8rem 1.5rem;
+  background: linear-gradient(
+    /* 90 degrade: 0% começa com 0 de opacidade, e termina com 100% */ 90deg,
+    rgba(132, 53, 222, 1) 0%,
+    rgba(184, 84, 232, 1) 100%
+  );
+  border-radius: 3rem;
+  border: none;
+  /* tira a cor da borda */
+}
+
+button:hover {
+  /* hover, qdo passa o mouse em cima do botão */
+  background: linear-gradient(
+    90deg,
+    rgba(184, 84, 232, 1) 0%,
+    rgba(132, 53, 222, 1) 100%
+    
+  );
 }
