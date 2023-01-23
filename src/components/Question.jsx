@@ -6,10 +6,19 @@ import Option from './Option';
 
 import '../assets/styles/Question.css';
 
+
 function Question() {
+
   const [quizState, dispatch] = useContext(QuizContext);
   const currentQuestion = quizState.questions[quizState.currentQuestion]
-  console.log(quizState);
+
+  const onselectOption = (option) => {
+    dispatch({
+      type: 'CHECK_ANSWER',
+      payload: { answer: currentQuestion.answer, option } // a resposta da perguta e a resposta que o usuário vai escolher
+    })
+  };
+
   return (
     <div id='question'>
       <p>Pergunta {quizState.currentQuestion + 1} de {quizState.questions.length}</p>
@@ -19,14 +28,19 @@ function Question() {
           <Option 
             option={option}
             key={option}
+            answer={currentQuestion.answer}
+            selectOption={onselectOption}
           />
          ))} 
          {/* // pega o objeto do arquivo com as options e faz o map */}
         </div>
-      <button 
-      onClick={() => dispatch({type: "CHANGE_QUESTION"})} // DISPATCH Muda para esse type, o dispatch ativa a funnção QuizReducer que tem o Switch Case (criada pra mudar o estado)
-      >
-        Continuar</button>
+         {quizState.answerSelected && 
+            <button 
+            onClick={() => dispatch({type: "CHANGE_QUESTION"})} // DISPATCH Muda para esse type, o dispatch ativa a funnção QuizReducer que tem o Switch Case (criada pra mudar o estado)
+            >
+              Continuar</button>
+         }
+
     </div>
   )
 }

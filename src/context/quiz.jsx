@@ -11,6 +11,7 @@ const initialState = {
   questions, // recebe o conteúdo de questions(data)
   currentQuestion: 0,
   score:0,
+  answerSelected: false,
 }
 
 // funcao criada para alterar o estado inicial
@@ -26,7 +27,6 @@ const quizReducer = (state, action) => {
         };
 
       case 'REORDER_QUESTIONS':
-        // console.log('reordenou')
         const reorderedQuestions = questions.sort(() => { // recebendo as perguntas que vem do arquivo, ordenando
             return Math.random() - 0.5;
         });
@@ -52,6 +52,21 @@ const quizReducer = (state, action) => {
 
       case 'NEW_GAME':
         return initialState;
+
+      case 'CHECK_ANSWER':
+        if(state.answerSelected) return state;
+        const answer = action.payload.answer
+        const option = action.payload.option
+        let correctAnswer = 0
+
+        if(answer === option) correctAnswer = 1;
+
+        return {
+          ...state,
+          score: state.score + correctAnswer,
+          answerSelected: option,
+        };
+
 
       default:
         return state;
