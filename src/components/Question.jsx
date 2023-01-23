@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useContext } from 'react';
 
-import { useContext } from 'react';
 import { QuizContext } from '../context/quiz';
+
+import '../assets/styles/Question.css';
 
 function Question() {
   const [quizState, dispatch] = useContext(QuizContext);
@@ -14,7 +15,10 @@ function Question() {
         <div id="options-container">
          <p>Opções</p>
         </div>
-      <button>Continuar</button>
+      <button 
+      onClick={() => dispatch({type: "CHANGE_QUESTION"})} // DISPATCH Muda para esse type, o dispatch ativa a funnção QuizReducer que tem o Switch Case (criada pra mudar o estado)
+      >
+        Continuar</button>
     </div>
   )
 }

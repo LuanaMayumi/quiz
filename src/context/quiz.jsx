@@ -35,6 +35,14 @@ const quizReducer = (state, action) => {
           questions: reorderedQuestions,
         }
 
+      case "CHANGE_QUESTION": // ALTERAR O INDICE DA MINHA PERGUNTA
+      const nextQuestion = state.currentQuestion + 1; // add o proximo indice a minha pergunta atual
+        return {
+          ...state,
+          currentQuestion: nextQuestion,
+        }
+
+
       default:
         return state;
   }
