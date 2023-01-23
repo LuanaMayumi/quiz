@@ -1,7 +1,7 @@
 import { createContext, useReducer } from "react";
 import questions from    '../data/questions';
 
-const STAGES = ["Start", "Playing", "End"]
+const STAGES = ["Start", "Playing", "End"] // diz qual é o estagio do jogo que vc está
 
 // qdo uso o useReducer, eu posso ter um estado inicial, ou seja, o que acontece qdo o cara entra na aplicação
 // definir um cenário base - gerenciar estados complexos:
@@ -37,11 +37,17 @@ const quizReducer = (state, action) => {
 
       case "CHANGE_QUESTION": // ALTERAR O INDICE DA MINHA PERGUNTA
       const nextQuestion = state.currentQuestion + 1; // add o proximo indice a minha pergunta atual
+      let endGame = false
+
+        if(!questions[nextQuestion]) { // se nao existir:
+          endGame = true;
+        }
+
         return {
           ...state,
           currentQuestion: nextQuestion,
-        }
-
+          gameStage: endGame ? STAGES[2] : state.gameStage // se o endGame for TRUE, vai pro End, se nao recebe o atual estagio
+        };
 
       default:
         return state;
