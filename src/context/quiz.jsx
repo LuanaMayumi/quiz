@@ -47,7 +47,8 @@ const quizReducer = (state, action) => {
         return {
           ...state,
           currentQuestion: nextQuestion,
-          gameStage: endGame ? STAGES[2] : state.gameStage // se o endGame for TRUE, vai pro End, se nao recebe o atual estagio
+          gameStage: endGame ? STAGES[2] : state.gameStage, // se o endGame for TRUE, vai pro End, se nao recebe o atual estagio
+          answerSelected: false,
         };
 
       case 'NEW_GAME':
