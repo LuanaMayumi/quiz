@@ -8,7 +8,8 @@ const STAGES = ["Start", "Playing", "End"]
 
 const initialState = {
   gameStage: STAGES[0],
-  questions
+  questions, // recebe o conteúdo de questions(data)
+  currentQuestion: 0,
 }
 
 // funcao criada para alterar o estado inicial
@@ -18,7 +19,21 @@ const quizReducer = (state, action) => {
 
   switch(action.type) { // baseado no tipo da ação
       case 'CHANGE_STATE':
-        return state;
+        return {
+          ...state,
+          gameStage: STAGES[1],
+        };
+
+      case 'REORDER_QUESTIONS':
+        // console.log('reordenou')
+        const reorderedQuestions = questions.sort(() => { // recebendo as perguntas que vem do arquivo, ordenando
+            return Math.random() - 0.5;
+        });
+
+        return {
+          ...state,
+          questions: reorderedQuestions,
+        }
 
       default:
         return state;
