@@ -10,6 +10,7 @@ const initialState = {
   gameStage: STAGES[0],
   questions, // recebe o conteúdo de questions(data)
   currentQuestion: 0,
+  score:0,
 }
 
 // funcao criada para alterar o estado inicial
@@ -36,8 +37,8 @@ const quizReducer = (state, action) => {
         }
 
       case "CHANGE_QUESTION": // ALTERAR O INDICE DA MINHA PERGUNTA
-      const nextQuestion = state.currentQuestion + 1; // add o proximo indice a minha pergunta atual
-      let endGame = false
+        const nextQuestion = state.currentQuestion + 1; // add o proximo indice a minha pergunta atual
+        let endGame = false
 
         if(!questions[nextQuestion]) { // se nao existir:
           endGame = true;
@@ -48,6 +49,9 @@ const quizReducer = (state, action) => {
           currentQuestion: nextQuestion,
           gameStage: endGame ? STAGES[2] : state.gameStage // se o endGame for TRUE, vai pro End, se nao recebe o atual estagio
         };
+
+      case 'NEW_GAME':
+        return initialState;
 
       default:
         return state;
